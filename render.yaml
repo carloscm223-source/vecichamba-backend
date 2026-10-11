@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: vecichamba-stripe-webhook
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 18.20.0
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: FIRESTORE_DATABASE_ID
+        value: ai-studio-android-vecicham-c3eb739c-16fe-485e-bb7f-97cf61d37af7
+      - key: FIREBASE_SERVICE_ACCOUNT
+        sync: false
